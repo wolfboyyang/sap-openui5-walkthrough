@@ -16,7 +16,7 @@
             "toolsId": "b30244ed-973e-4ec1-b7a6-2aac31e6e7bd"
         },
         "dataSources": {
-            "mainService": {
+            "invoiceRemote": {
                 "uri": "/V2/Northwind/Northwind.svc/",
                 "type": "OData",
                 "settings": {
@@ -69,8 +69,8 @@
                     "bundleName": "sap.ui.demo.walkthrough.i18n.i18n"
                 }
             },
-            "": {
-                "dataSource": "mainService",
+            "invoice": {
+                "dataSource": "invoiceRemote",
                 "preload": true,
                 "settings": {}
             }
@@ -85,29 +85,32 @@
         "routing": {
             "config": {
                 "routerClass": "sap.m.routing.Router",
+                "type": "View",
                 "viewType": "XML",
-                "async": true,
-                "viewPath": "sap.ui.demo.walkthrough.view",
-                "controlAggregation": "pages",
+                "path": "sap.ui.demo.walkthrough.view",
                 "controlId": "app",
-                "clearControlAggregation": false
+                "controlAggregation": "pages"
             },
             "routes": [
                 {
-                    "name": "RouteHelloPanel",
-                    "pattern": ":?query:",
-                    "target": [
-                        "TargetHelloPanel"
-                    ]
+                    "pattern": "",
+                    "name": "overview",
+                    "target": "overview"
+                },
+                {
+                    "pattern": "detail",
+                    "name": "detail",
+                    "target": "detail"
                 }
             ],
             "targets": {
-                "TargetHelloPanel": {
-                    "viewType": "XML",
-                    "transition": "slide",
-                    "clearControlAggregation": false,
-                    "viewId": "HelloPanel",
-                    "viewName": "HelloPanel"
+                "overview": {
+                    "id": "overview",
+                    "name": "Overview"
+                },
+                "detail": {
+                    "id": "detail",
+                    "name": "Detail"
                 }
             }
         },
@@ -115,7 +118,7 @@
             "viewName": "sap.ui.demo.walkthrough.view.App",
             "type": "XML",
             "async": true,
-            "id": "App"
+            "id": "app"
         }
     },
     "sap.cloud": {
